@@ -49,7 +49,7 @@ router.put("/:id", async (req, res) => {
   const director = req.body.director;
 
   await db.execute(
-    "update  peliculas set titulo=?, descripcion=?, año=?, duracion=?, genero=?, director=?",
+    "update  peliculas set titulo=?, descripcion=?, año=?, duracion=?, genero=?, director=? where id_peliculas=?",
     [titulo, descripcion, año, duracion, genero, director, id]
   );
 
