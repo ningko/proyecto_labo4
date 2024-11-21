@@ -5,15 +5,11 @@ import loginRouter from "./login.js";
 import { conectarDB } from "./db.js";
 
 conectarDB();
-
-app.use(cors());
-app.use(express.json());
-
 const app = express();
 const port = 3000;
+
 app.use(cors());
 app.use(express.json());
-
 app.get("/", (req, res) => {
   res.send("hola mundo!");
 });
