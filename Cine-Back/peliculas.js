@@ -4,7 +4,7 @@ import { db } from "./db.js";
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  const [peliculas, fields] = await db.execute("select * form peliculas ");
+  const [peliculas, fields] = await db.execute("select * from peliculas ");
   res.send({
     peliculas: peliculas.map((elemento) => ({
       id: elemento.id_peliculas,
