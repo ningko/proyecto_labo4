@@ -108,7 +108,7 @@ function App() {
       <h1>Películas</h1>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="titulo">Título</label>
+          <label htmlFor="titulo">Título </label>
           <input
             type="text"
             id="titulo"
@@ -118,7 +118,7 @@ function App() {
           />
         </div>
         <div>
-          <label htmlFor="descripcion">Descripción</label>
+          <label htmlFor="descripcion">Descripción </label>
           <input
             type="text"
             id="descripcion"
@@ -128,7 +128,7 @@ function App() {
           />
         </div>
         <div>
-          <label htmlFor="año">Año</label>
+          <label htmlFor="año">Año </label>
           <input
             type="number"
             id="año"
@@ -138,7 +138,7 @@ function App() {
           />
         </div>
         <div>
-          <label htmlFor="duracion">Duración (min)</label>
+          <label htmlFor="duracion">Duración (min) </label>
           <input
             type="number"
             id="duracion"
@@ -148,7 +148,7 @@ function App() {
           />
         </div>
         <div>
-          <label htmlFor="genero">Género</label>
+          <label htmlFor="genero">Género </label>
           <input
             type="text"
             id="genero"
@@ -158,7 +158,7 @@ function App() {
           />
         </div>
         <div>
-          <label htmlFor="director">Director</label>
+          <label htmlFor="director">Director </label>
           <input
             type="text"
             id="director"
