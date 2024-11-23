@@ -1,5 +1,6 @@
 import { useState } from "react";
-import "./App.css";
+import "./Pagina1.css";
+import { Link } from "react-router-dom";
 
 function App() {
   const [usuario, setUsuario] = useState("");
@@ -56,55 +57,62 @@ function App() {
   };
 
   return (
-    <div>
-      <h1>{isRegistering ? "Registro" : "Inicio de Sesión"}</h1>
-      <form onSubmit={isRegistering ? registro : login}>
-        <div>
-          <label htmlFor="usuario">Usuario</label>
-          <input
-            type="text"
-            id="usuario"
-            value={usuario}
-            onChange={(e) => setUsuario(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Contraseña</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        {isRegistering ? (
-          <button type="submit">Registrar</button>
-        ) : (
-          <button type="submit">Iniciar Sesión</button>
-        )}
-      </form>
+    <>
+      <div>
+        <h1>{isRegistering ? "Registro" : "Inicio de Sesión"}</h1>
+        <form onSubmit={isRegistering ? registro : login}>
+          <div>
+            <label htmlFor="usuario">Usuario</label>
+            <input
+              type="text"
+              id="usuario"
+              value={usuario}
+              onChange={(e) => setUsuario(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="password">Contraseña</label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          {isRegistering ? (
+            <button type="submit">Registrar</button>
+          ) : (
+            <button type="submit">Iniciar Sesión</button>
+          )}
+        </form>
 
-      <p>
-        {isRegistering ? (
-          <span>
-            ¿Ya tienes una cuenta?{" "}
-            <button onClick={() => setIsRegistering(false)}>
-              Inicia sesión
-            </button>
-          </span>
-        ) : (
-          <span>
-            ¿No tienes una cuenta?{" "}
-            <button onClick={() => setIsRegistering(true)}>Regístrate</button>
-          </span>
-        )}
-      </p>
+        <p>
+          {isRegistering ? (
+            <span>
+              ¿Ya tienes una cuenta?{" "}
+              <button onClick={() => setIsRegistering(false)}>
+                Inicia sesión
+              </button>
+            </span>
+          ) : (
+            <span>
+              ¿No tienes una cuenta?{" "}
+              <button onClick={() => setIsRegistering(true)}>Regístrate</button>
+            </span>
+          )}
+        </p>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      {registrado && <p style={{ color: "green" }}>{registrado}</p>}
-    </div>
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        {registrado && <p style={{ color: "green" }}>{registrado}</p>}
+      </div>
+      <div>
+        <Link to="/pagina2">
+          <button>Siguiente</button>
+        </Link>
+      </div>
+    </>
   );
 }
 
