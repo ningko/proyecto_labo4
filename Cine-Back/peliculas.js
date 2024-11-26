@@ -12,6 +12,7 @@ router.get("/", async (req, res) => {
     })),
   });
 });
+
 router.get("/titulos", async (req, res) => {
   const [peliculas, fields] = await db.execute("select titulo from peliculas ");
   res.send({
