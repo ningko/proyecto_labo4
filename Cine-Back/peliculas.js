@@ -23,6 +23,19 @@ router.get("/titulos", async (req, res) => {
   });
 });
 
+router.get("/:id", async (req, res) => {
+  const id = req.params.id
+
+  const sql = `SELECT * FROM peliculas WHERE id=?`
+  const [peliculas] = await db.execute(sql, [id])
+
+  if (peliculas.length === 0) {
+      res.status(204).send()
+  } else {
+      res.send({ pelicula: peliculas[0]})
+  }
+})
+
 router.post("/", async (req, res) => {
   const titulo = req.body.titulo;
   const descripcion = req.body.descripcion;
