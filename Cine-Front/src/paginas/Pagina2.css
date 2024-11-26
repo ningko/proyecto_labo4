@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   background-image: url("./cine.jpg");
-  background-size: cover;
+  background-size: auto;
   background-position: center;
   display: flex;
   justify-content: center;

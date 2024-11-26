@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Pagina1.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function App() {
   const [username, setusername] = useState("");
@@ -111,11 +111,6 @@ function App() {
         {error && <p style={{ color: "red" }}>{error}</p>}
         {registrado && <p style={{ color: "green" }}>{registrado}</p>}
         {token && <p>token:{token}</p>}
-      </div>
-      <div>
-        <Link to="/pagina2">
-          <button>Siguiente</button>
-        </Link>
       </div>
     </>
   );
