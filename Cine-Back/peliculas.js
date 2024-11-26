@@ -4,10 +4,10 @@ import { db } from "./db.js";
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  const [peliculas, fields] = await db.execute("select * from peliculas ");
+  const [peliculas, fields] = await db.execute("SELECT * FROM peliculas");
   res.send({
-    peliculas: peliculas.map((elemento) => ({
-      id: elemento.id_peliculas,
+    peliculas: peliculas.map(({ id_peliculas, ...elemento }) => ({
+      id: id_peliculas,
       ...elemento,
     })),
   });
