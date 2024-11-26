@@ -1,31 +1,35 @@
 import { useState } from "react";
 import "./Pagina1.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function App() {
-  const [usuario, setUsuario] = useState("");
+  const [username, setusername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [token, setToken] = useState("");
   const [registrado, setRegistrado] = useState("");
   const [isRegistering, setIsRegistering] = useState(false);
+  const navigate = useNavigate();
 
   const login = async (e) => {
     e.preventDefault();
     setError("");
     setRegistrado("");
 
-    const response = await fetch("http://localhost:3000/autenticacion/login", {
+    const response = await fetch("http://localhost:3000/autenticacion", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ usuario, password }),
+      body: JSON.stringify({ username, password }),
     });
 
     if (response.ok) {
       const { token } = await response.json();
-      setToken(token);
-      setUsuario("");
+
+      setusername("");
       setPassword("");
       setError("");
+
+      navigate("/pagina2");
     } else {
       const errorData = await response.json();
       setError(errorData.error || "Error en el inicio de sesión");
@@ -37,22 +41,22 @@ function App() {
     setError("");
     setRegistrado("");
 
-    const response = await fetch("http://localhost:3000/usuarios", {
+    const response = await fetch("http://localhost:3000/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ usuario, password }),
+      body: JSON.stringify({ username, password }),
     });
 
     if (response.ok) {
       setRegistrado(
-        "Usuario registrado exitosamente. Ahora puedes iniciar sesión."
+        "username registrado exitosamente. Ahora puedes iniciar sesión."
       );
       setIsRegistering(false);
-      setUsuario("");
+      setusername("");
       setPassword("");
     } else {
       const errorData = await response.json();
-      setError(errorData.errores?.[0]?.msg || "Error al registrar el usuario");
+      setError(errorData.errores?.[0]?.msg || "Error al registrar el username");
     }
   };
 
@@ -62,12 +66,12 @@ function App() {
         <h1>{isRegistering ? "Registro" : "Inicio de Sesión"}</h1>
         <form onSubmit={isRegistering ? registro : login}>
           <div>
-            <label htmlFor="usuario">Usuario</label>
+            <label htmlFor="username">username</label>
             <input
               type="text"
-              id="usuario"
-              value={usuario}
-              onChange={(e) => setUsuario(e.target.value)}
+              id="username"
+              value={username}
+              onChange={(e) => setusername(e.target.value)}
               required
             />
           </div>
@@ -106,6 +110,7 @@ function App() {
 
         {error && <p style={{ color: "red" }}>{error}</p>}
         {registrado && <p style={{ color: "green" }}>{registrado}</p>}
+        {token && <p>token:{token}</p>}
       </div>
       <div>
         <Link to="/pagina2">

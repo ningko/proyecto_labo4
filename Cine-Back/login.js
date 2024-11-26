@@ -6,7 +6,7 @@ import bcrypt from "bcrypt";
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  const [usuarios] = await db.execute("select * from usuario");
+  const [usuarios] = await db.execute("select * from usuarios");
   res.send({ usuarios });
 });
 
@@ -30,7 +30,7 @@ router.post(
     const { username, password } = req.body;
     const contraseña = await bcrypt.hash(password, 10);
     const [result] = await db.execute(
-      "insert into usuario (username, password) values (?,?)",
+      "insert into usuarios (username, password) values (?,?)",
       [username, contraseña]
     );
     res

@@ -7,10 +7,10 @@ import jwt from "jsonwebtoken";
 const router = express.Router();
 
 router.post(
-  "/login",
+  "/",
   body("username").isAlphanumeric().notEmpty().isLength({ max: 25 }),
   body("password").isStrongPassword({
-    minLength: 8,
+    minLength: 10,
     minLowercase: 1,
     minUppercase: 1,
     minNumbers: 1,
@@ -25,7 +25,7 @@ router.post(
 
     const { username, password } = req.body;
     const [usuarios] = await db.execute(
-      "select * from usuario where username=?",
+      "select * from usuarios where username=?",
       [username]
     );
 

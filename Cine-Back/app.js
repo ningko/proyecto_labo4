@@ -4,6 +4,9 @@ import peliculasRouter from "./peliculas.js";
 import loginRouter from "./login.js";
 import { conectarDB } from "./db.js";
 import autenticacionRouter from "./autenticacion.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 conectarDB();
 const app = express();
